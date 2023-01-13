@@ -3,19 +3,30 @@ import { connect } from 'react-redux';
 import increment from './actions/increment';
 import decrement from './actions/decrement';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         number: state.number
     }
 };
 
-const mapDispatchToProps = dispatch => {
-   return bindActionCreators({increment, decrement}, dispatch);
+
+// 2 different ways of dispatching
+const mapDispatchToProps = (dispatch) => {
+   return {
+    increment: bindActionCreators(increment, dispatch),
+    decrement: () => dispatch(decrement())
+   }
 }
 
 class Counter extends React.Component {
+
+    static propTypes = {
+        incrementAction: PropTypes.any,
+        decrementAction: PropTypes.any
+    }
 
     incrementButton = () => this.props.increment();
     decrementButton = () => this.props.decrement();
