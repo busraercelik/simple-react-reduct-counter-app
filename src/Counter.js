@@ -12,7 +12,6 @@ const mapStateToProps = (state) => {
     }
 };
 
-
 // 2 different ways of dispatching
 const mapDispatchToProps = (dispatch) => {
    return {
@@ -24,8 +23,8 @@ const mapDispatchToProps = (dispatch) => {
 class Counter extends React.Component {
 
     static propTypes = {
-        incrementAction: PropTypes.any,
-        decrementAction: PropTypes.any
+        incrementAction: PropTypes.number,
+        decrementAction: PropTypes.number
     }
 
     incrementButton = () => this.props.increment();
